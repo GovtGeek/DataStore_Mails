@@ -295,7 +295,7 @@ local function _GetMailSubject(character, index)
 	
 	if link then
 		local id = GetIDFromLink(link)
-		name = GetItemInfo(id)
+		name = C_Item.GetItemInfo(id)
 	end
 	
 	return name
@@ -364,7 +364,7 @@ local commCallbacks = {
 			guildMailRecipientKey = nil
 		end,
 	[MSG_SENDMAIL_ATTACHMENT] = function(sender, icon, link, count)
-			local id = addon:GetCharacterID(guildMailRecipientKey)
+			local id = DataStore:GetCharacterID(guildMailRecipientKey)
 			local recipientTable = allCharacters[id]
 			
 			if recipientTable then
@@ -372,7 +372,7 @@ local commCallbacks = {
 			end
 		end,
 	[MSG_SENDMAIL_BODY] = function(sender, subject, body, money)
-			local id = addon:GetCharacterID(guildMailRecipientKey)
+			local id = DataStore:GetCharacterID(guildMailRecipientKey)
 			local recipientTable = allCharacters[id]
 
 			if recipientTable then
